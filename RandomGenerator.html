@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>True Random Number Generator</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .result {
+      background-color: #e0e0e0;
+      padding: 20px;
+      border-radius: 3px;
+      margin-top: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>True Random Number Generator</h1>
+
+    <label for="min">Min:</label>
+    <input type="number" id="min" value="1" min="1">
+
+    <label for="max">Max:</label>
+    <input type="number" id="max" value="10" min="1">
+
+    <button onclick="generateRandomNumber()">Generate</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function generateRandomNumber() {
+      const min = parseInt(document.getElementById('min').value);
+      const max = parseInt(document.getElementById('max').value);
+
+      if (min > max) {
+        alert('Minimum value must be less than or equal to the maximum value.');
+        return;
+      }
+
+      const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+      const resultElement = document.getElementById('result');
+      resultElement.innerHTML = `
+        <h2>${randomNumber}</h2>
+        <p>Min: ${min}, Max: ${max}</p>
+        <p>${new Date().toLocaleString()}</p>
+      `;
+    }
+  </script>
+</body>
+</html>
